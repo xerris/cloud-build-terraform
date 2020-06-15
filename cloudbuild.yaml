@@ -3,10 +3,10 @@ steps:
  - name: 'docker.io/hashicorp/terraform:0.12.26'
    id: 'init-sandbox'
    args: 
-    - 'terraform init'
+    - 'init'
    dir: 'environments/sandbox'
  - name: 'docker.io/hashicorp/terraform:0.12.26'
    id: 'validate-sandbox'
    args: 
-    - 'terraform validate'
+    - 'validate'
    dir: 'environments/sandbox'
