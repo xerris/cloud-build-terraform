@@ -19,5 +19,5 @@ steps:
    id: 'apply-sandbox'
    args: 
     - 'apply'
-    - '--auto-aprove'
+    - '--auto-approve'
    dir: 'environments/sandbox'
