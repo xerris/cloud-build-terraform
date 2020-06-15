@@ -6,6 +6,10 @@ resource "google_compute_instance" "default" {
 
   tags = ["stack", "purpose"]
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   boot_disk {
     initialize_params {
       image = "debian-cloud/debian-9"
