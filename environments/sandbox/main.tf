@@ -9,6 +9,8 @@ terraform{
 module "common_shared_module" {
   source            = "../../modules"
 }
+
 module "vm"{
   source  = "../../modules/vm"
+  vm_name = var.vm_name
 }

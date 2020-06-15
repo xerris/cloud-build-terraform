@@ -1,10 +1,10 @@
 resource "google_compute_instance" "default" {
   project      = "enrichme-bbfde"
-  name         = "test"
+  name         =  var.vm_name
   machine_type = "n1-standard-1"
   zone         = "us-central1-a"
 
-  tags = ["foo", "bar"]
+  tags = ["stack", "purpose"]
 
   boot_disk {
     initialize_params {
