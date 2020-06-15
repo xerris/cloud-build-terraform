@@ -3,8 +3,10 @@ steps:
 - name: 'docker.io/bash:latest'
   id: 'plan-sandbox'
   args: 
-    - 'echo "this"'
-    # - 'terraform init'
-    # - 'terraform validate'
+    - 'yum install -y unzip jq'
+    - 'curl -O https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip'
+    - 'unzip terraform_0.12.26_linux_amd64.zip -d /usr/bin/''
+    - 'terraform init'
+    - 'terraform validate'
     # - 'terraform plan'
   dir: 'environments/sandbox'
