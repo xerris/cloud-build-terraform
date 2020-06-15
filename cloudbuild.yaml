@@ -1,6 +1,6 @@
 # Build the module.
 steps: 
-- name: 'gcr.io/google-containers/tf-models'
+- name: 'docker.io/hashicorp/terraform:0.12.26'
   id: 'validate-sandbox'
   args: ['terraform', 'validate']
   dir: 'environments/sandbox'
