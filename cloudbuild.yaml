@@ -3,7 +3,7 @@ steps:
 - name: 'docker.io/bash:latest'
   id: 'plan-sandbox'
   args: 
-    - 'echo this'
+    - 'echo "this"'
     # - 'terraform init'
     # - 'terraform validate'
     # - 'terraform plan'
