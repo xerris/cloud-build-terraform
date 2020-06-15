@@ -10,12 +10,12 @@ steps:
    args: 
     - 'validate'
    dir: 'environments/sandbox'
-- name: 'docker.io/hashicorp/terraform:0.12.26'
+ - name: 'docker.io/hashicorp/terraform:0.12.26'
    id: 'plan-sandbox'
    args: 
     - 'plan'
    dir: 'environments/sandbox'
-- name: 'docker.io/hashicorp/terraform:0.12.26'
+ - name: 'docker.io/hashicorp/terraform:0.12.26'
    id: 'apply-sandbox'
    args: 
     - 'apply --auto-aprove'
