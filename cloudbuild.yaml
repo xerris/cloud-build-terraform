@@ -1,7 +1,8 @@
 # Build the module.
 steps: 
-- name: 'docker.io/bash:latest'
+- name: 'gcr.io/cloud-builders/git'
   id: 'plan-sandbox'
+  entrypoint: /bin/sh
   args: 
     - 'yum install -y unzip jq'
     - 'curl -O https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip'
