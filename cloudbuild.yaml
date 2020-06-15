@@ -1,13 +1,12 @@
 # Build the module.
 steps: 
- - name: 'gcr.io/cloud-builders/docker'
-   entrypoint: 'bash'
-   id: 'plan-sandbox'
+ - name: 'docker.io/hashicorp/terraform:0.12.26'
+   id: 'init-sandbox'
    args: 
-    - 'apt-get install -y unzip jq'
-    - 'curl -O https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linux_amd64.zip'
-    - 'unzip terraform_0.12.26_linux_amd64.zip -d /usr/bin/'
     - 'terraform init'
+   dir: 'environments/sandbox'
+ - name: 'docker.io/hashicorp/terraform:0.12.26'
+   id: 'validate-sandbox'
+   args: 
     - 'terraform validate'
-    # - 'terraform plan'
    dir: 'environments/sandbox'
