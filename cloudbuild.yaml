@@ -18,5 +18,6 @@ steps:
  - name: 'docker.io/hashicorp/terraform:0.12.26'
    id: 'apply-sandbox'
    args: 
-    - 'apply --auto-aprove'
+    - 'apply'
+    - '--auto-aprove'
    dir: 'environments/sandbox'
