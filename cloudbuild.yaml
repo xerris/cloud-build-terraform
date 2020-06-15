@@ -1,0 +1,6 @@
+# Build the module.
+steps: 
+- name: 'gcr.io/hashicorp/terraform:0.12.26'
+  id: 'validate-sandbox'
+  args: ['terraform', 'validate']
+  dir: 'environments/sandbox'
