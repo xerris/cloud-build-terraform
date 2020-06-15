@@ -2,7 +2,7 @@
 steps: 
 - name: 'docker.io/hashicorp/terraform:0.12.26'
   id: 'plan-sandbox'
-  entrypoint: /bin/sh
+  entrypoint: /bin/bash
   args: 
     - 'terraform init'
     - 'terraform validate'
