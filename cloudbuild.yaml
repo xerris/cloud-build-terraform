@@ -1,13 +1,10 @@
 # Build the module.
 steps: 
 - name: 'docker.io/hashicorp/terraform:0.12.26'
-  id: 'validate-sandbox'
+  id: 'plan-sandbox'
+  entrypoint: /bin/sh
   args: 
-    - 'init'
-  dir: 'environments/sandbox'
-steps: 
-- name: 'docker.io/hashicorp/terraform:0.12.26'
-  id: 'validate-sandbox'
-  args: 
-    - 'validate'
+    - 'terraform init'
+    - 'terraform validate'
+    - 'terraform plan'
   dir: 'environments/sandbox'
