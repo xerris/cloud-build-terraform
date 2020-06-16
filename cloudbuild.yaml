@@ -21,4 +21,4 @@ steps:
     - 'apply'
     - '--auto-approve'
    dir: "environments/$BRANCH_NAME"
-   waitFor: 'terraform-plan'
+   waitFor: ['terraform-plan']
