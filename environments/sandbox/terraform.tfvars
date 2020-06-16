@@ -1,1 +1,1 @@
-vm_name            = "flying-squirrel"
+vm_name            = "flying-panda"
