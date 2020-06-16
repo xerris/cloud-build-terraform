@@ -1,23 +1,23 @@
 # Build the module.
 steps: 
  - name: 'docker.io/hashicorp/terraform:0.12.26'
-   id: 'init-$BRANCH_NAME'
+   id: "init-$BRANCH_NAME"
    args: 
     - 'init'
-   dir: 'environments/$BRANCH_NAME'
+   dir: "environments/$BRANCH_NAME"
  - name: 'docker.io/hashicorp/terraform:0.12.26'
-   id: 'validate-$BRANCH_NAME'
+   id: "validate-$BRANCH_NAME"
    args: 
     - 'validate'
-   dir: 'environments/sandbox'
+   dir: "environments/$BRANCH_NAME"
  - name: 'docker.io/hashicorp/terraform:0.12.26'
-   id: 'plan-$BRANCH_NAME'
+   id: "plan-$BRANCH_NAME"
    args: 
     - 'plan'
-   dir: 'environments/$BRANCH_NAME'
+   dir: "environments/$BRANCH_NAME"
  - name: 'docker.io/hashicorp/terraform:0.12.26'
-   id: 'apply-$BRANCH_NAME'
+   id: "apply-$BRANCH_NAME"
    args: 
     - 'apply'
     - '--auto-approve'
-   dir: 'environments/$BRANCH_NAME'
+   dir: "environments/$BRANCH_NAME"
