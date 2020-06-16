@@ -4,7 +4,7 @@ terraform{
 
     backend "gcs" {
         bucket         = "tf-state-sandbox-1"
-        prefix         = "enrichme-project/sandbox"
+        prefix         = "enrichme-project/staging"
     }
 }
 
