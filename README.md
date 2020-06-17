@@ -28,9 +28,9 @@ This then allows you to just have a tagging convention to release off a single m
 
 Your Cloud Build Triggers would look something like:
 
-sandbox, Push to branch,	`^master$` (inverted)
-staging,	Push to tag,	`^staging-.*$`	
-production, Push to tag, 	`^production-.*$`
+* sandbox, Push to branch,	`^master$` (inverted)
+* staging,	Push to tag,	`^staging-.*$`	
+* production, Push to tag, 	`^production-.*$`
 	 
 
 ## Environment per branch
