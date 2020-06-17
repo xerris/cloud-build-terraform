@@ -1,3 +1,3 @@
 vm_name            = "jumping-elephant"
-project_name       = "randocat-bbfde"
+project_name       = "MASTER: NOT YET"
 branch_name        = "master"
