@@ -2,6 +2,13 @@
 
 A simple starter kit for running your terraform code on every checkin.
 
+You have two options for how release your environments depending on how you want to work:
+
+1) Environment per tag (recommended)
+2) Environment per branch
+
+Which one you pick will determine your developer workflow for getting code into an environment.
+
 ## Environment per tag
 
 The example only has master (and feature branches people are working on) and you use a Cloud Build Trigger to work off a regex of new tags. Following semantic versioning your tag specification could be something like:
