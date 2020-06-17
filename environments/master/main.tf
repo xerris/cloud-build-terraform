@@ -10,6 +10,7 @@ terraform{
 
 module "common_shared_module" {
   source            = "../../modules"
+  project_name = var.project_name
 }
 
 module "vm"{
