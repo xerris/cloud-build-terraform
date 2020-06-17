@@ -17,4 +17,5 @@ module "vm"{
   source  = "../../modules/vm"
   vm_name = var.vm_name
   project_name = var.project_name
+  external_ip = vm.external_ip
 }
