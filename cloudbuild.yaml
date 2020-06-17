@@ -10,11 +10,13 @@ steps:
    args: 
     - 'validate'
    dir: "environments/$BRANCH_NAME"
+   waitFor: [terraform-init]
  - name: docker.io/hashicorp/terraform:0.12.26
    id: terraform-plan
    args: 
     - 'plan'
    dir: "environments/$BRANCH_NAME"
+   waitFor: [terraform-validate]
  - name: docker.io/hashicorp/terraform:0.12.26
    id: terraform-apply
    args: 
