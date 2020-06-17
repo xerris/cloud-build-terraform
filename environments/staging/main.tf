@@ -7,4 +7,5 @@ module "common_shared_module" {
 module "vm"{
   source  = "../../modules/vm"
   vm_name = var.vm_name
+  project_name = var.project_name
 }
