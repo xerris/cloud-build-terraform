@@ -2,6 +2,15 @@
 
 A simple starter kit for running your terraform code on every checkin.
 
+## Environment per tag
+
+The example only has master (and feature branches people are working on) and you use a Cloud Build Trigger to work off a regex of new tags. Following semantic versioning your tag specification could be something like:
+
+staging-v1.0.0
+production-v1.0.0
+
+This then allows you to just have a tagging convention to release off a single master branch. This reduces merging and drift that the Environment per branch causes on a infrastructure as code project.
+
 ## Environment per branch
 
 The example has a master and staging environment, but you can have as many branches and environments as you
