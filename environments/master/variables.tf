@@ -6,3 +6,7 @@ variable "project_name"{
   type    = string
   default = ""
 }
+variable "branch_name"{
+  type    = string
+  default = ""
+}
