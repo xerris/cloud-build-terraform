@@ -3,6 +3,8 @@ steps:
     id: inspec-test
     args: ["exec", ".", "--target", "gcp://", "--input-file", "attributes.yml"]
     dir: inspec-profile
+    env:
+      - "CHEF_LICENSE=accept"
 #  - name: docker.io/hashicorp/terraform:0.12.26
 #    id: terraform-init
 #    args:
