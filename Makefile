@@ -14,12 +14,12 @@ lint: lint-tflint
 lint-inspec:
 	time inspec check inspec-profile
 
-# tflint: check Terraform for syntax and usage (fast)
+# tflint: check Terraform for syntax and usage
 # LOCAL INSTALL: brew install tflint
-lint-tflint:
-	find . -name '*.tf' | xargs -n1 | xargs -n1 docker run --rm -v $$(pwd):/data -t wata727/tflint
 lint-tflint-local:
-	find . -name '*.tf' | xargs -n1 tflint
+	find [a-z]* -type d | xargs -n1 tflint
+lint-tflint-docker:
+	find [a-z]* -type d | xargs -n1 docker run --rm -v $$(pwd):/data -t wata727/tflint
 
 xtest-vm:
 	ARGS='--controls /vm/' make test
