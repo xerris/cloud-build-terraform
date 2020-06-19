@@ -1,20 +1,32 @@
+# 
+#
+# SIMPLE + FAST
+# ls -1 inspec-profile/controls/*.rb | entr -c inspec exec inspec-profile -t gcp:// --input-file inspec-profile/attributes.yml --controls /vm/
+
 SOURCE:=--no-source
 
 all:
 
-# xdev:
-# 	ls ./inspec-profile/controls/vm.rb \
-# 	| entr -c inspec exec inspec-profile -t gcp:// \
-# 	--controls /vm/ \
-# 	--show-progress \
-# 	--input-file inspec-profile/attributes.yml
+
+lint: lint-tflint
+
+# inspec: check syntax (time: 15 sec)
+lint-inspec:
+	time inspec check inspec-profile
+
+# tflint: check Terraform for syntax and usage (fast)
+# LOCAL INSTALL: brew install tflint
+lint-tflint:
+	find . -name '*.tf' | xargs -n1 | xargs -n1 docker run --rm -v $$(pwd):/data -t wata727/tflint
+lint-tflint-local:
+	find . -name '*.tf' | xargs -n1 tflint
+
 xtest-vm:
-	inspec exec inspec-profile -t gcp:// \
-	--controls /vm/ \
-	--show-progress \
-	--input-file inspec-profile/attributes.yml
+	ARGS='--controls /vm/' make test
+
 test:
-	inspec exec inspec-profile -t gcp:// --input-file inspec-profile/attributes.yml
+	time inspec exec inspec-profile -t gcp:// \
+	--input-file inspec-profile/attributes.yml $(ARGS)
 
 dev:
 	find inspec-profile/ -type f | entr -c make test
