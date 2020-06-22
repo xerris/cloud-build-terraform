@@ -2,9 +2,11 @@ steps:
   # LINT: quick surface-level check
   - id: tflint
     name: docker.io/wata727/tflint
-    # entrypoint: /usr/bin/find
+    entrypoint: /bin/sh
     # dir: "/data"
     args: ["build/run-tflint.sh"]
+    env:
+      - TFLINT_LOG=debug
     # args: ["build/run-tflint.sh"]
   # # TERRAFORM: build resources
   # - name: docker.io/hashicorp/terraform:0.12.26
