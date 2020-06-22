@@ -3,8 +3,8 @@ steps:
   - id: tflint
     name: docker.io/wata727/tflint
     # entrypoint: /usr/bin/find
-    dir: "/data"
-    # args: ["build/run-tflint.sh"]
+    # dir: "/data"
+    args: ["build/run-tflint.sh"]
     # args: ["build/run-tflint.sh"]
   # # TERRAFORM: build resources
   # - name: docker.io/hashicorp/terraform:0.12.26
