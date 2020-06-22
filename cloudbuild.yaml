@@ -1,8 +1,11 @@
 steps:
+  # LINT: quick surface-level check
   - id: tflint
     name: docker.io/wata727/tflint
-    entrypoint: "sh"
-    args: ["build/run-tflint.sh"]
+    entrypoint: /usr/bin/find
+    # args: ["build/run-tflint.sh"]
+    # args: ["build/run-tflint.sh"]
+  # # TERRAFORM: build resources
   # - name: docker.io/hashicorp/terraform:0.12.26
   #   id: terraform-init
   #   args:
@@ -15,18 +18,13 @@ steps:
   #   dir: "environments/$BRANCH_NAME"
   #   waitFor: [terraform-init]
   # - name: docker.io/hashicorp/terraform:0.12.26
-  #   id: terraform-plan
-  #   args:
-  #     - "plan"
-  #   dir: "environments/$BRANCH_NAME"
-  #   waitFor: [terraform-validate]
-  # - name: docker.io/hashicorp/terraform:0.12.26
   #   id: terraform-apply
   #   args:
   #     - "apply"
   #     - "--auto-approve"
   #   dir: "environments/$BRANCH_NAME"
-  #   waitFor: [terraform-plan]
+  #   waitFor: [terraform-init]
+  # # TEST: check resources with Inspec
   # - name: docker.io/chef/inspec:4.20.2
   #   id: inspec-test
   #   args: ["exec", ".", "--target", "gcp://", "--input-file", "attributes.yml"]

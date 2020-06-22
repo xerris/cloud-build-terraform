@@ -38,7 +38,7 @@ validate:
 dryrun:
 	cloud-build-local --dryrun=true $(SOURCE)
 
-build:
+build: dryrun
 	cloud-build-local --dryrun=false $(SOURCE)
 
 
