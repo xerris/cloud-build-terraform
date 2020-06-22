@@ -3,34 +3,35 @@ steps:
   - id: tflint
     name: docker.io/wata727/tflint
     entrypoint: /bin/sh
-    # dir: "/data"
     args: ["build/run-tflint.sh"]
+    # enable TFLINT_LOG for debugging
+    # env:
+    #   - TFLINT_LOG=debug
+  #
+  # TERRAFORM: build resources
+  - name: docker.io/hashicorp/terraform:0.12.26
+    id: terraform-init
+    args:
+      - "init"
+    dir: "environments/$BRANCH_NAME"
+  - name: docker.io/hashicorp/terraform:0.12.26
+    id: terraform-validate
+    args:
+      - "validate"
+    dir: "environments/$BRANCH_NAME"
+    waitFor: [terraform-init]
+  - name: docker.io/hashicorp/terraform:0.12.26
+    id: terraform-apply
+    args:
+      - "apply"
+      - "--auto-approve"
+    dir: "environments/$BRANCH_NAME"
+    waitFor: [terraform-init]
+  #
+  # TEST: check resources with Inspec
+  - name: docker.io/chef/inspec:4.20.2
+    id: inspec-test
+    args: ["exec", ".", "--target", "gcp://", "--input-file", "attributes.yml"]
+    dir: inspec-profile
     env:
-      - TFLINT_LOG=debug
-    # args: ["build/run-tflint.sh"]
-  # # TERRAFORM: build resources
-  # - name: docker.io/hashicorp/terraform:0.12.26
-  #   id: terraform-init
-  #   args:
-  #     - "init"
-  #   dir: "environments/$BRANCH_NAME"
-  # - name: docker.io/hashicorp/terraform:0.12.26
-  #   id: terraform-validate
-  #   args:
-  #     - "validate"
-  #   dir: "environments/$BRANCH_NAME"
-  #   waitFor: [terraform-init]
-  # - name: docker.io/hashicorp/terraform:0.12.26
-  #   id: terraform-apply
-  #   args:
-  #     - "apply"
-  #     - "--auto-approve"
-  #   dir: "environments/$BRANCH_NAME"
-  #   waitFor: [terraform-init]
-  # # TEST: check resources with Inspec
-  # - name: docker.io/chef/inspec:4.20.2
-  #   id: inspec-test
-  #   args: ["exec", ".", "--target", "gcp://", "--input-file", "attributes.yml"]
-  #   dir: inspec-profile
-  #   env:
-  #     - "CHEF_LICENSE=accept"
+      - "CHEF_LICENSE=accept"
