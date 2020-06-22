@@ -1,10 +1,8 @@
 steps:
   - id: tflint
     name: docker.io/wata727/tflint
-    args:
-      - "environments/staging"
-    # find . -name '*.tf' | xargs -n1 | xargs -n1 docker run --rm -v $$(pwd):/data -t wata727/tflint
-
+    entrypoint: "sh"
+    args: ["build/run-tflint.sh"]
   # - name: docker.io/hashicorp/terraform:0.12.26
   #   id: terraform-init
   #   args:

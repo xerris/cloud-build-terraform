@@ -1,7 +1,5 @@
 # 
 #
-# SIMPLE + FAST
-# ls -1 inspec-profile/controls/*.rb | entr -c inspec exec inspec-profile -t gcp:// --input-file inspec-profile/attributes.yml --controls /vm/
 
 SOURCE:=--no-source
 
@@ -10,23 +8,24 @@ all:
 
 lint: lint-tflint
 
-# inspec: check syntax (time: 15 sec)
+# Inspec: check syntax (time: 15 sec)
 lint-inspec:
 	time inspec check inspec-profile
 
-# tflint: check Terraform for syntax and usage
-# LOCAL INSTALL: brew install tflint
-lint-tflint-local:
-	find [a-z]* -type d | xargs -n1 tflint
-lint-tflint-docker:
-	find [a-z]* -type d | xargs -n1 docker run --rm -v $$(pwd):/data -t wata727/tflint
-
+# xtest-vm: fast test, only "vm" section, x=local only (not CI)
 xtest-vm:
-	ARGS='--controls /vm/' make test
+	ARGS='--controls /vm/' make test-inspec
 
-test:
+# test-inspec: check resources with Inspec (time: 1 minute)
+test-inspec:
 	time inspec exec inspec-profile -t gcp:// \
 	--input-file inspec-profile/attributes.yml $(ARGS)
+
+# Tflint: check Terraform for syntax and usage
+# LOCAL INSTALL: brew install tflint
+lint-tflint lint-tflint-local:
+	build/run-tflint.sh
+
 
 dev:
 	find inspec-profile/ -type f | entr -c make test
