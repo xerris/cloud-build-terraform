@@ -4,8 +4,6 @@
 #
 set -euo pipefail # strict mode
 
-set -o verbose
-
 # switch to Cloud Build directory (from tflint's default workdir)
 cd /workspace
 
