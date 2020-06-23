@@ -2,8 +2,8 @@ terraform{
   required_version = "0.12.26"
 
   backend "gcs" {
-      bucket         = "johntellsall-organization-terraform"
-      prefix         = "tf-state/randocat-project/master"
+      bucket         = "tf-state-sandbox-1"
+      prefix         = "tf-state/enrichme-project/master"
   }
 }
 

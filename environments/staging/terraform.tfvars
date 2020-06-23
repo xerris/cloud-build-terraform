@@ -1,3 +1,3 @@
-vm_name            = "lilbub-1256"
-project_name       = "site-randocat"
+vm_name            = "laughing-deer"
+project_name       = "enrichme-bbfde"
 branch_name        = "staging"
