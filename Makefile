@@ -1,8 +1,3 @@
-# 
-#
-
-SOURCE:=--no-source
-
 all:
 
 
@@ -33,9 +28,6 @@ lint-tflint lint-tflint-local:
 # dev-lint -- run lint when TF files change
 # dev-test -- check resources with Inspec when files change (X: VM tests only)
 #
-# cb-dryrun -- check using local CloudBuild on change (dry run, no resources updated)
-# cb-apply -- use CloudBuild to change resources & validate on change
-#
 .PHONY: .watch.txt
 .watch.txt:
 	git ls-files *.tf cloudbuild.yaml | xargs -n1 echo > $@
@@ -48,6 +40,11 @@ dev-test: .watch.txt
 validate:
 	cd environments/staging ; terraform validate
 	
+# cb-dryrun -- check using local CloudBuild on change (dry run, no resources updated)
+# cb-apply -- use CloudBuild to change resources & validate on change
+#
+SOURCE:=.
+
 cb-dryrun:
 	cloud-build-local --dryrun=true $(SOURCE)
 
