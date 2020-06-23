@@ -4,9 +4,13 @@
 #
 set -euo pipefail # strict mode
 
-# switch to Cloud Build directory (from tflint's default workdir)
-cd /workspace
+# CI: switch to Cloud Build directory (from tflint's default workdir)
+if [ -d /workspace ] ; then
+    cd /workspace
+fi
 
 tf_directories=$(find . -type f -name '*.tf' | xargs -n1 dirname | uniq)
 echo $tf_directories
 echo $tf_directories | xargs -n1 tflint
+
+echo "tflint: done"
