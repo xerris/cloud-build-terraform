@@ -1,3 +1,3 @@
-vm_name            = "emotional-frog"
+vm_name            = "emotional-froggy"
 project_name       = "enrichme-bbfde"
 branch_name        = "test"
