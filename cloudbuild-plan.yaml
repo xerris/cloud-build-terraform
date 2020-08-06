@@ -1,0 +1,29 @@
+steps:
+  # LINT: quick surface-level check
+  - id: tflint
+    name: docker.io/wata727/tflint
+    entrypoint: /bin/sh
+    args: ["build/run-tflint.sh"]
+    # enable TFLINT_LOG for debugging
+    # env:
+    #   - TFLINT_LOG=debug
+  #
+  # TERRAFORM: build resources
+  - name: docker.io/hashicorp/terraform:0.12.26
+    id: terraform-init
+    args:
+      - "init"
+    dir: "environments/$_BASE_BRANCH"
+  - name: docker.io/hashicorp/terraform:0.12.26
+    id: terraform-validate
+    args:
+      - "validate"
+    dir: "environments/$_BASE_BRANCH"
+    waitFor: [terraform-init]
+  - name: docker.io/hashicorp/terraform:0.12.26
+    id: terraform-plan
+    args:
+      - "plan"
+      - "-out=tfplan"
+    dir: "environments/$_BASE_BRANCH"
+    waitFor: [terraform-validate]
